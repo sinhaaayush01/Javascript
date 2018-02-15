@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+		function armstrong(n)
+		{
+			var r=0,s=0,m;
+			m=n;
+			while(n>0)
+			{
+				r=n%10;
+				s=s+(r*r*r);
+				n=parseInt(n/10);
+			}
+			if(s==m)
+				document.write(m+" is an armstrong number");
+			else
+				document.write(m+" is not so");
+		}
+	</script>
+</head>
+<body>
+	<script>
+		armstrong(371);
+	</script>
+</body>
+</html>

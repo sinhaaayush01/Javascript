@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+		function prime(l,h)
+		{
+			while(l<h)
+			{
+				var c=0;
+				for(i=2;i<l/2;i++)
+				{
+					if(l%i==0)
+						c++;
+				}
+				if(c==0 && l!=1)
+				document.write(l+"  ");
+				l++;
+			}
+		}
+	</script>
+</head>
+<body>
+	<script>
+		prime(1,100);
+	</script>
+</body>
+</html>

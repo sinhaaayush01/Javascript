@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function palindrome(n)
+		{
+			var r=0,s=0,m;
+			m=n;
+			while(n>0)
+			{
+				r=n%10;
+				s=s*10+r;
+				n=parseInt(n/10);
+			}
+			if(s==m)
+				document.write(m+" is palindrome");
+			else
+				document.write(m+" is not palindrome");
+		}
+	</script>
+	<title></title>
+</head>
+<body>
+	<script>
+		palindrome(1231);
+	</script>
+</body>
+</html>
