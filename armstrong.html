@@ -4,7 +4,9 @@
 <head>
     <title></title>
     <script>
-    function armstrong(l, h) {
+    function armstrong() {
+    	h=parseInt(document.getElementById("num").value);
+    	var l=1;
         while (l < h) {
             var r = 0,
                 s = 0,
@@ -24,9 +26,8 @@
 </head>
 
 <body>
-    <script>
-    armstrong(1, 1000);
-    </script>
+	<input type="number" id="num" />
+	<button onclick="armstrong()">Get last range value</button>
 </body>
 
 </html>

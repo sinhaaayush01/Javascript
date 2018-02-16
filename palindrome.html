@@ -2,8 +2,9 @@
 <html>
 <head>
 	<script>
-		function palindrome(n)
+		function palindrome()
 		{
+			n=parseInt(document.getElementById("num").value);
 			var r=0,s=0,m;
 			m=n;
 			while(n>0)
@@ -13,16 +14,15 @@
 				n=parseInt(n/10);
 			}
 			if(s==m)
-				document.write(m+" is palindrome");
+				alert(m+" is palindrome");
 			else
-				document.write(m+" is not palindrome");
+				alert(m+" is not palindrome");
 		}
 	</script>
 	<title></title>
 </head>
 <body>
-	<script>
-		palindrome(1231);
-	</script>
+	<input type="number" id="num" />
+	<button onclick="palindrome()">Get Number</button>
 </body>
 </html>

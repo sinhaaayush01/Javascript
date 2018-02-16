@@ -3,8 +3,10 @@
 <head>
 	<title></title>
 	<script>
-		function prime(l,h)
+		function prime()
 		{
+			h=parseInt(document.getElementById("num").value);
+			l=1;
 			while(l<h)
 			{
 				var c=0;
@@ -21,8 +23,7 @@
 	</script>
 </head>
 <body>
-	<script>
-		prime(1,100);
-	</script>
+	<input type="number" id="num" />
+	<button onclick="prime()">Last series number</button>
 </body>
 </html>

@@ -4,7 +4,8 @@
 <head>
     <title>Fibonacci</title>
     <script>
-    function fibonacci(n) {
+    function fibonacci() {
+        n=parseInt(document.getElementById("num").value);
         var a = 0;
         var b = 1;
         var c = 0;
@@ -22,9 +23,8 @@
 </head>
 
 <body>
-    <script>
-    	fibonacci(10);
-    </script>
+    <input type="number" id="num">
+    <button onclick="fibonacci()">Series till</button>
 </body>
 
 </html>

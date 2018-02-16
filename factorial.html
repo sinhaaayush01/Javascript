@@ -4,7 +4,8 @@
 <head>
     <title></title>
     <script>
-    function factorial(n) {
+    function factorial() {
+    	n = parseInt(document.getElementById("num").value);
         var f = 1;
         for (i = n; i >= 1; i--)
         {
@@ -15,9 +16,8 @@
     </script>
 </head>
 <body>
-	<script>
-		factorial(5);
-	</script>
+	<input type="number" id="num"/>
+	<button onclick="factorial()">Get fact </button>
 </body>
 
 </html>
