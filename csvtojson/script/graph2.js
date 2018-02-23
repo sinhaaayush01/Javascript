@@ -1,7 +1,7 @@
 // set the dimensions of the canvas
 var margin = {top: 20, right: 20, bottom: 70, left: 80},
     width = 600 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 
 // set the ranges
@@ -20,7 +20,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .ticks(10);
 // add the SVG element
-var svg4 = d3.select(".sec4").append("svg")
+var svg3 = d3.select(".sec2").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -29,19 +29,19 @@ var svg4 = d3.select(".sec4").append("svg")
 
 
 // load the data
-d3.json("continentpopulation.json", function(error, data) {
+d3.json("script/gdp.json", function(error, data) {
 
     data.forEach(function(d) {
-        d.Continent = d.Continent;
-        d.Population2013 = +d.Population2013;
+        d.Country = d.Country;
+        d.GDP2013 = +d.GDP2013;
     });
-	
+  
   // scale the range of the data
-  x.domain(data.map(function(d) { return d.Continent; }));
-  y.domain([0, d3.max(data, function(d) { return d.Population2013; })]);
+  x.domain(data.map(function(d) { return d.Country; }));
+  y.domain([0, d3.max(data, function(d) { return d.GDP2013; })]);
 
   // add axis
-  svg4.append("g")
+  svg3.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
@@ -49,9 +49,9 @@ d3.json("continentpopulation.json", function(error, data) {
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("dy", "-.55em")
-      .attr("transform", "rotate(-80)");
+      .attr("transform", "rotate(-40)");
 
-  svg4.append("g")
+  svg3.append("g")
       .attr("class", "y axis")
         .call(yAxis)
         .append("text")
@@ -59,16 +59,17 @@ d3.json("continentpopulation.json", function(error, data) {
         .attr("x", -height/2)
         .attr("dy", "-5em")
         .style("text-anchor", "middle")
-        .text("Population of Continent in 2013");
+        .text("GDP of Countries in 2013");
+
 
   // Add bar chart
-  svg4.selectAll("bar")
+  svg3.selectAll("bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Continent); })
+      .attr("x", function(d) { return x(d.Country); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Population2013); })
-      .attr("height", function(d) { return height - y(d.Population2013); });
+      .attr("y", function(d) { return y(d.GDP2013); })
+      .attr("height", function(d) { return height - y(d.GDP2013); });
 
 });

@@ -20,7 +20,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .ticks(10);
 // add the SVG element
-var svg2 = d3.select(".sec3").append("svg")
+var svg5 = d3.select(".sec5").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -29,19 +29,19 @@ var svg2 = d3.select(".sec3").append("svg")
 
 
 // load the data
-d3.json("ppp.json", function(error, data) {
+d3.json("script/continentgdp.json", function(error, data) {
 
     data.forEach(function(d) {
-        d.Country = d.Country;
-        d.PPP2013 = +d.PPP2013;
+        d.Continent = d.Continent;
+        d.GDP2013 = +d.GDP2013;
     });
 	
   // scale the range of the data
-  x.domain(data.map(function(d) { return d.Country; }));
-  y.domain([0, d3.max(data, function(d) { return d.PPP2013; })]);
+  x.domain(data.map(function(d) { return d.Continent; }));
+  y.domain([0, d3.max(data, function(d) { return d.GDP2013; })]);
 
   // add axis
-  svg2.append("g")
+  svg5.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
@@ -51,26 +51,25 @@ d3.json("ppp.json", function(error, data) {
       .attr("dy", "-.55em")
       .attr("transform", "rotate(-80)");
 
-  svg2.append("g")
-        .attr("class", "y axis")
+  svg5.append("g")
+      .attr("class", "y axis")
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -height/2)
         .attr("dy", "-5em")
         .style("text-anchor", "middle")
-        .text("PPP of Countries in 2013");
+        .text("GDP of Continents in 2013");
 
 
   // Add bar chart
-  svg2.selectAll("bar")
+  svg5.selectAll("bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Country); })
+      .attr("x", function(d) { return x(d.Continent); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.PPP2013); })
-      .attr("height", function(d) { return height - y(d.PPP2013); })
-      .attr(style.fill.color = 'orange');
+      .attr("y", function(d) { return y(d.GDP2013); })
+      .attr("height", function(d) { return height - y(d.GDP2013); });
 
 });

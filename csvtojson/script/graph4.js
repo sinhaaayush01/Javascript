@@ -20,7 +20,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .ticks(10);
 // add the SVG element
-var svg1 = d3.select(".sec1").append("svg")
+var svg4 = d3.select(".sec4").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -29,19 +29,19 @@ var svg1 = d3.select(".sec1").append("svg")
 
 
 // load the data
-d3.json("population.json", function(error, data) {
+d3.json("script/continentpopulation.json", function(error, data) {
 
     data.forEach(function(d) {
-        d.Country = d.Country;
+        d.Continent = d.Continent;
         d.Population2013 = +d.Population2013;
     });
 	
   // scale the range of the data
-  x.domain(data.map(function(d) { return d.Country; }));
+  x.domain(data.map(function(d) { return d.Continent; }));
   y.domain([0, d3.max(data, function(d) { return d.Population2013; })]);
 
   // add axis
-  svg1.append("g")
+  svg4.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
@@ -51,23 +51,22 @@ d3.json("population.json", function(error, data) {
       .attr("dy", "-.55em")
       .attr("transform", "rotate(-80)");
 
- svg1.append("g")
-        .attr("class", "y axis")
+  svg4.append("g")
+      .attr("class", "y axis")
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -height/2)
-        .attr("dy", "-4em")
+        .attr("dy", "-5em")
         .style("text-anchor", "middle")
-        .text("Population of Countries in 2013");
-
+        .text("Population of Continent in 2013");
 
   // Add bar chart
-  svg1.selectAll("bar")
+  svg4.selectAll("bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Country); })
+      .attr("x", function(d) { return x(d.Continent); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.Population2013); })
       .attr("height", function(d) { return height - y(d.Population2013); });
